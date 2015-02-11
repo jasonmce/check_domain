@@ -125,13 +125,13 @@ expiration=$day-$month-$year
 # for .info domains
 elif [ $TYPE == 'afilias' ];
 then
-expiration=`cat ${FILE} | awk '/Expiration Date:/' | cut -d ':' -f2 | cut -d ' ' -f1`
+expiration=`cat ${FILE} | awk '/Registry Expiry Date:/' | cut -d ':' -f2 |cut -d 'T' -f1`
 #for .ru domains
 elif [ $TYPE == 'russia' ];
 then
 day=`cat ${FILE} | awk '/paid-till:/' | cut -d ':' -f2 | cut -d '.' -f3`
 month=`cat ${FILE} | awk '/paid-till:/' | cut -d ':' -f2 | cut -d '.' -f2`
-getmonth() 
+getmonth()
 {
        case $month in
              01) echo jan ;;
@@ -155,7 +155,7 @@ elif [ $TYPE == 'dk-hostmaster' ];
 then
 day=`cat ${FILE} | awk '/Expires:/' | cut -d '-' -f3`
 month=`cat ${FILE} | awk '/Expires:/' | cut -d '-' -f2`
-getmonth() 
+getmonth()
 {
        case $month in
              01) echo jan ;;
